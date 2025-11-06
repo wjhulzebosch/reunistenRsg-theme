@@ -1,0 +1,5 @@
+# Ignore zip files in main folder
+*.zip
+
+# Ignore .github folder in main folder
+.github/
