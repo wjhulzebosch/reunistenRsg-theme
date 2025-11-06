@@ -6,13 +6,20 @@
         <div class="footer-columns">
             <!-- Column 1 -->
             <div class="footer-column">
-                <h3>Links Column 1</h3>
+                <h3><strong>Stichting</strong></h3>
                 <ul>
-                    <li><a href="#">Link 1</a></li>
-                    <li><a href="#">Link 2</a></li>
-                    <li><a href="#">Link 3</a></li>
-                    <li><a href="#">Link 4</a></li>
-                    <li><a href="#">Link 5</a></li>
+                    <li><a href="/stichting/">Stichting</a></li>
+                    <li><a href="/statuten/">Statuten</a></li>
+                    <li><a href="/vacatures/">Vacatures</a></li>
+                    <li><a href="/jaarverslag/">Jaarverslag</a></li>
+                    <li><a href="/privacyverklaring/">Privacyverklaring</a></li>
+                </ul>
+                
+                <h3><strong>Doneren</strong></h3>
+                <ul>
+                    <li><a href="/lidmaat-donateurschap/">Lidmaat-donateurschap</a></li>
+                    <li><a href="/fondsen/">Fondsen</a></li>
+                    <li><a href="/schenkingen-en-legaten/">Schenkingen en legaten</a></li>
                 </ul>
             </div>
             

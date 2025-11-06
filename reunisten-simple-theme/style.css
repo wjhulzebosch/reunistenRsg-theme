@@ -36,7 +36,6 @@ body {
     height: 80px;
     float: left;
     margin-right: 20px;
-    border: 2px solid #000000;
     background-color: #ffffff;
     display: flex;
     align-items: center;
@@ -201,4 +200,9 @@ body {
         margin-right: 0;
         margin-bottom: 30px;
     }
+}
+
+/* WooCommerce customizations */
+.woocommerce-ordering {
+    display: none !important;
 }
