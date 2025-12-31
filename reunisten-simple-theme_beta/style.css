@@ -1,9 +1,14 @@
 /*
-Theme Name: Reunisten Simple Theme Beta
+Theme Name: reunisten-simple-theme_beta
 Description: An extremely simple WordPress theme with minimal styling - white background, black text, specially made for Reunisten RSG
 Version: beta
 Author: Custom Theme
 */
+
+:root {
+    --rsg-purple: #3C1E6E;
+    --rsg-purple-light: #5C3E8E;
+}
 
 /* Reset and base styles */
 * {
@@ -15,7 +20,7 @@ Author: Custom Theme
 body {
     background-color: #ffffff;
     color: #000000;
-    font-family: Arial, sans-serif;
+    font-family: 'Rubik', sans-serif;
     line-height: 1.6;
 }
 
@@ -86,24 +91,37 @@ body {
 }
 
 /* Sub-menu styles */
-.site-navigation ul ul {
+.site-navigation ul ul,
+.site-navigation .dropdown {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #ffffff;
-    border: 1px solid #000000;
+    background-color: var(--rsg-purple-light);
+    border: 2px solid var(--rsg-purple);
     display: none;
     min-width: 200px;
+    z-index: 9999;
 }
 
-.site-navigation li:hover > ul {
+.site-navigation li:hover > ul,
+.site-navigation .has-dropdown:hover > .dropdown {
     display: block;
 }
 
-.site-navigation ul ul li {
+.site-navigation ul ul li,
+.site-navigation .dropdown li {
     display: block;
     margin: 0;
-    border-bottom: 1px solid #000000;
+}
+
+.site-navigation ul ul li:last-child {
+    border-bottom: none;
+}
+
+.site-navigation ul ul a,
+.site-navigation .dropdown a {
+    color: #ffffff;
+}
 }
 
 .site-navigation ul ul li:last-child {
@@ -126,13 +144,20 @@ body {
 .site-footer {
     margin-top: 60px;
     padding: 40px 0;
-    border-top: 1px solid #000000;
+    background-color: var(--rsg-purple);
+    color: #ffffff;
 }
 
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px 0;
 }
 
 .footer-columns {
@@ -164,7 +189,7 @@ body {
 }
 
 .footer-column a {
-    color: #000000;
+    color: #ffffff;
     text-decoration: none;
 }
 
@@ -205,179 +230,4 @@ body {
 /* WooCommerce customizations */
 .woocommerce-ordering {
     display: none !important;
-}
-
-/* Utility Links (inline with main nav) */
-.utility-links {
-    display: inline-block;
-    list-style: none;
-    margin-left: 30px;
-    padding-left: 30px;
-    border-left: 1px solid #ccc;
-}
-
-.utility-links li {
-    display: inline-block;
-    margin-right: 20px;
-}
-
-.utility-links li:last-child {
-    margin-right: 0;
-}
-
-.utility-links a {
-    color: #000000;
-    text-decoration: none;
-    padding: 5px 10px;
-}
-
-.utility-links a:hover {
-    text-decoration: underline;
-}
-
-/* Front Page Styles */
-.front-page {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.front-intro {
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-}
-
-.front-intro h1 {
-    margin-bottom: 15px;
-}
-
-.front-quick-links {
-    margin-bottom: 40px;
-}
-
-.front-quick-links ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 30px;
-}
-
-.front-quick-links a {
-    color: #000000;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.front-quick-links a:hover {
-    text-decoration: underline;
-}
-
-.front-quick-links a::before {
-    content: "→ ";
-}
-
-.front-news {
-    margin-bottom: 40px;
-}
-
-.front-news h2 {
-    margin-bottom: 20px;
-}
-
-.news-list {
-    list-style: none;
-}
-
-.news-list li {
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.news-list a {
-    color: #000000;
-    text-decoration: none;
-}
-
-.news-list a:hover {
-    text-decoration: underline;
-}
-
-.news-date {
-    color: #666;
-    font-size: 14px;
-}
-
-.view-all {
-    margin-top: 20px;
-}
-
-.view-all a {
-    color: #000000;
-}
-
-.front-page-content {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-}
-
-/* Footer Bottom Styles */
-.footer-bottom {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.footer-disclaimer {
-    color: #666;
-    font-size: 14px;
-}
-
-.footer-social {
-    display: flex;
-    gap: 15px;
-}
-
-.footer-social a {
-    color: #000000;
-    transition: opacity 0.2s;
-}
-
-.footer-social a:hover {
-    opacity: 0.7;
-}
-
-/* Responsive adjustments for new elements */
-@media (max-width: 768px) {
-    .top-banner {
-        text-align: center;
-    }
-
-    .top-banner a {
-        margin: 0 10px;
-    }
-
-    .front-quick-links ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .news-list li {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-    }
 }

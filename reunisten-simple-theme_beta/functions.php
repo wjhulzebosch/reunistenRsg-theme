@@ -65,62 +65,82 @@ function reunisten_get_logo_url() {
  * Generate category-based navigation menu
  */
 function reunisten_category_menu() {
-    $categories = get_categories(array(
-        'orderby' => 'name',
-        'order' => 'ASC',
-        'parent' => 0, // Only top-level categories
-        'hide_empty' => false,
-        'exclude' => array(1), // Hide "Uncategorized" (usually ID 1)
-    ));
-    
-    if (!empty($categories)) {
-        echo '<ul>';
+    // Keep for backwards compatibility
+    reunisten_main_menu();
+}
+
+/**
+ * Generate main navigation menu based on Plan.md structure
+ */
+function reunisten_main_menu() {
+    ?>
+    <ul class="main-menu">
+        <!-- Direct links (no dropdown) -->
+        <li><a href="<?php echo esc_url(home_url('/winkel/')); ?>">Webshop</a></li>
+        <li><a href="<?php echo esc_url(home_url('/wijzigen/')); ?>">Gegevens wijzigen</a></li>
+        <li><a href="https://www.hetrsg.nl/" target="_blank" rel="noopener">Het R.S.G.</a></li>
         
-        // Add hardcoded Webshop link
-        echo '<li><a href="' . esc_url(home_url('/winkel/')) . '">Webshop</a></li>';
+        <!-- Dropdown: Activiteiten -->
+        <li class="has-dropdown">
+            <a href="<?php echo esc_url(home_url('/activiteiten/')); ?>">Activiteiten</a>
+            <ul class="dropdown">
+                <li><a href="<?php echo esc_url(home_url('/kalender/')); ?>">Kalender</a></li>
+                <li><a href="<?php echo esc_url(home_url('/category/verslagen/')); ?>">Verslagen</a></li>
+                <li><a href="<?php echo esc_url(home_url('/category/aankondigingen/')); ?>">Aankondigingen</a></li>
+                <li><a href="<?php echo esc_url(home_url('/category/bijzondere-projecten/')); ?>">Bijzondere projecten</a></li>
+                <li><a href="<?php echo esc_url(home_url('/category/nieuwsbrieven/')); ?>">Nieuwsbrieven</a></li>
+                <li><a href="<?php echo esc_url(home_url('/onthulling-eeuwcadeau/')); ?>">Eeuwcadeau</a></li>
+            </ul>
+        </li>
         
-        foreach ($categories as $category) {
-            echo '<li>';
-            echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
-            
-            // Check for subcategories
-            $subcategories = get_categories(array(
-                'orderby' => 'name',
-                'order' => 'ASC',
-                'parent' => $category->term_id,
-                'hide_empty' => false,
-            ));
-            
-            if (!empty($subcategories)) {
-                echo '<ul>';
-                foreach ($subcategories as $subcategory) {
-                    echo '<li>';
-                    echo '<a href="' . esc_url(get_category_link($subcategory->term_id)) . '">' . esc_html($subcategory->name) . '</a>';
-                    
-                    // Get posts and pages for this subcategory
-                    $posts = get_posts(array(
-                        'category' => $subcategory->term_id,
-                        'numberposts' => -1,
-                        'post_status' => 'publish',
-                    ));
-                    
-                    if (!empty($posts)) {
-                        echo '<ul>';
-                        foreach ($posts as $post) {
-                            echo '<li><a href="' . esc_url(get_permalink($post->ID)) . '">' . esc_html($post->post_title) . '</a></li>';
-                        }
-                        echo '</ul>';
-                    }
-                    
-                    echo '</li>';
-                }
-                echo '</ul>';
-            }
-            
-            echo '</li>';
-        }
-        echo '</ul>';
-    }
+        <!-- Dropdown: Almanak -->
+        <li class="has-dropdown">
+            <a href="<?php echo esc_url(home_url('/almanak/')); ?>">Almanak</a>
+            <ul class="dropdown">
+                <li><a href="<?php echo esc_url(home_url('/category/in-memoriam/')); ?>">In memoriam</a></li>
+                <li><a href="<?php echo esc_url(home_url('/ledenlijst/')); ?>">Ledenlijst</a></li>
+                <li><a href="<?php echo esc_url(home_url('/senaten-besturen-en-commissies/')); ?>">Senaten, Besturen en Commissies</a></li>
+            </ul>
+        </li>
+        
+        <!-- Dropdown: Doneren -->
+        <li class="has-dropdown">
+            <a href="<?php echo esc_url(home_url('/doneren/')); ?>">Doneren</a>
+            <ul class="dropdown">
+                <li><a href="<?php echo esc_url(home_url('/fondsen-donaties/')); ?>">Fondsen donaties</a></li>
+                <li><a href="<?php echo esc_url(home_url('/lidmaatschap/')); ?>">Lidmaatschap</a></li>
+                <li><a href="<?php echo esc_url(home_url('/schenkingen-en-legaten/')); ?>">Schenkingen en legaten</a></li>
+            </ul>
+        </li>
+        
+        <!-- Dropdown: Mijn RRSG -->
+        <li class="has-dropdown">
+            <a href="<?php echo esc_url(home_url('/mijn-rrsg/')); ?>">Mijn RRSG</a>
+            <ul class="dropdown">
+                <li><a href="<?php echo esc_url(home_url('/beeindigen-donateurschap/')); ?>">Beëindigen donateurschap</a></li>
+                <li><a href="<?php echo esc_url(home_url('/wijzigen/')); ?>">Gegevens wijzigen</a></li>
+                <li><a href="<?php echo esc_url(home_url('/melden-overlijden/')); ?>">Melden overlijden</a></li>
+                <li><a href="<?php echo esc_url(home_url('/uitschrijven-als-reunist/')); ?>">Uitschrijven als Reünist</a></li>
+            </ul>
+        </li>
+        
+        <!-- Dropdown: Over Ons -->
+        <li class="has-dropdown">
+            <a href="<?php echo esc_url(home_url('/over-ons/')); ?>">Over Ons</a>
+            <ul class="dropdown">
+                <li><a href="<?php echo esc_url(home_url('/businessclubcommissie/')); ?>">Businessclubcommissie</a></li>
+                <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a></li>
+                <li><a href="<?php echo esc_url(home_url('/curatorium/')); ?>">Curatorium</a></li>
+                <li><a href="<?php echo esc_url(home_url('/doel-van-de-stichting/')); ?>">Doel van de Stichting</a></li>
+                <li><a href="<?php echo esc_url(home_url('/fondsen/')); ?>">Fondsen</a></li>
+                <li><a href="<?php echo esc_url(home_url('/jaarstukken/')); ?>">Jaarstukken</a></li>
+                <li><a href="<?php echo esc_url(home_url('/nesthor-commissie/')); ?>">Nesthor Commissie</a></li>
+                <li><a href="<?php echo esc_url(home_url('/statuten/')); ?>">Statuten</a></li>
+                <li><a href="<?php echo esc_url(home_url('/wat-is-rrsg/')); ?>">Wat is R.R.S.G.</a></li>
+            </ul>
+        </li>
+    </ul>
+    <?php
 }
 
 /**

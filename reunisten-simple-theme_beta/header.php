@@ -24,11 +24,7 @@
         
         <!-- Navigation Menu -->
         <nav class="site-navigation">
-            <?php reunisten_category_menu(); ?>
-            <ul class="utility-links">
-                <li><a href="<?php echo esc_url(home_url('/wijzigen/')); ?>">Gegevens wijzigen</a></li>
-                <li><a href="https://www.hetrsg.nl/" target="_blank" rel="noopener">Het R.S.G.</a></li>
-            </ul>
+            <?php reunisten_main_menu(); ?>
         </nav>
     </div>
 </header>
