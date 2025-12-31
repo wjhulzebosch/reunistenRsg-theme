@@ -10,16 +10,6 @@
 <?php wp_body_open(); ?>
 
 <header class="site-header">
-    <!-- Top Banner with utility links -->
-    <div class="top-banner">
-        <div class="banner-container">
-            <a href="https://www.rfrsg.nl/" target="_blank" rel="noopener">R.S.G.</a>
-            <a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a>
-            <a href="<?php echo esc_url(home_url('/winkel/')); ?>">Webshop</a>
-            <a href="<?php echo esc_url(home_url('/mijn-account/')); ?>">Gegevens wijzigen</a>
-        </div>
-    </div>
-
     <div class="header-container clearfix">
         <!-- Logo Section -->
         <div class="site-logo">
@@ -35,6 +25,10 @@
         <!-- Navigation Menu -->
         <nav class="site-navigation">
             <?php reunisten_category_menu(); ?>
+            <ul class="utility-links">
+                <li><a href="<?php echo esc_url(home_url('/wijzigen/')); ?>">Gegevens wijzigen</a></li>
+                <li><a href="https://www.hetrsg.nl/" target="_blank" rel="noopener">Het R.S.G.</a></li>
+            </ul>
         </nav>
     </div>
 </header>
