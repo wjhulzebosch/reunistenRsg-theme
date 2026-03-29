@@ -1,14 +1,9 @@
 /*
-Theme Name: reunisten-simple-theme_beta
+Theme Name: Reunisten Simple Theme
 Description: An extremely simple WordPress theme with minimal styling - white background, black text, specially made for Reunisten RSG
-Version: beta
+Version: 1.0
 Author: Custom Theme
 */
-
-:root {
-    --rsg-purple: #3C1E6E;
-    --rsg-purple-light: #5C3E8E;
-}
 
 /* Reset and base styles */
 * {
@@ -20,7 +15,7 @@ Author: Custom Theme
 body {
     background-color: #ffffff;
     color: #000000;
-    font-family: 'Rubik', sans-serif;
+    font-family: Arial, sans-serif;
     line-height: 1.6;
 }
 
@@ -91,37 +86,24 @@ body {
 }
 
 /* Sub-menu styles */
-.site-navigation ul ul,
-.site-navigation .dropdown {
+.site-navigation ul ul {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: var(--rsg-purple-light);
-    border: 2px solid var(--rsg-purple);
+    background-color: #ffffff;
+    border: 1px solid #000000;
     display: none;
     min-width: 200px;
-    z-index: 9999;
 }
 
-.site-navigation li:hover > ul,
-.site-navigation .has-dropdown:hover > .dropdown {
+.site-navigation li:hover > ul {
     display: block;
 }
 
-.site-navigation ul ul li,
-.site-navigation .dropdown li {
+.site-navigation ul ul li {
     display: block;
     margin: 0;
-}
-
-.site-navigation ul ul li:last-child {
-    border-bottom: none;
-}
-
-.site-navigation ul ul a,
-.site-navigation .dropdown a {
-    color: #ffffff;
-}
+    border-bottom: 1px solid #000000;
 }
 
 .site-navigation ul ul li:last-child {
@@ -144,20 +126,13 @@ body {
 .site-footer {
     margin-top: 60px;
     padding: 40px 0;
-    background-color: var(--rsg-purple);
-    color: #ffffff;
+    border-top: 1px solid #000000;
 }
 
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-}
-
-.footer-bottom {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 20px 0;
 }
 
 .footer-columns {
@@ -189,7 +164,7 @@ body {
 }
 
 .footer-column a {
-    color: #ffffff;
+    color: #000000;
     text-decoration: none;
 }
 

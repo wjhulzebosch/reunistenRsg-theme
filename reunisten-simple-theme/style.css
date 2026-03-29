@@ -1,9 +1,14 @@
 /*
-Theme Name: Reunisten Simple Theme
+Theme Name: reunisten-simple-theme
 Description: An extremely simple WordPress theme with minimal styling - white background, black text, specially made for Reunisten RSG
-Version: 1.0
-Author: Custom Theme
+Version: 1.0.6
+Author: Wicher Hulzebosch
 */
+
+:root {
+    --rsg-purple: #532965;
+    --rsg-purple-light: #5C3E8E;
+}
 
 /* Reset and base styles */
 * {
@@ -15,8 +20,25 @@ Author: Custom Theme
 body {
     background-color: #ffffff;
     color: #000000;
-    font-family: Arial, sans-serif;
+    font-family: 'Rubik', sans-serif;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+p {
+    margin-bottom: 1.5em;
+}
+
+ul, ol {
+    margin-bottom: 1.5em;
+    list-style-position: inside;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0.5em;
+    margin-bottom: 0.75em;
 }
 
 /* Header styles */
@@ -38,7 +60,7 @@ body {
     margin-right: 20px;
     background-color: #ffffff;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
 }
 
@@ -60,12 +82,14 @@ body {
 /* Navigation styles */
 .site-navigation {
     margin-left: 100px; /* Space for logo + margin */
-    margin-top: 10px;
-    clear: both;
+    display: flex;
+    align-items: flex-end;
+    min-height: 80px;
 }
 
 .site-navigation ul {
     list-style: none;
+    margin-bottom: 0;
 }
 
 .site-navigation li {
@@ -86,36 +110,72 @@ body {
 }
 
 /* Sub-menu styles */
-.site-navigation ul ul {
+.site-navigation ul ul,
+.site-navigation .dropdown {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #ffffff;
-    border: 1px solid #000000;
+    background-color: var(--rsg-purple-light);
+    border: 2px solid var(--rsg-purple);
     display: none;
     min-width: 200px;
+    z-index: 9999;
 }
 
-.site-navigation li:hover > ul {
+.site-navigation li:hover > ul,
+.site-navigation .has-dropdown:hover > .dropdown {
     display: block;
 }
 
-.site-navigation ul ul li {
+.site-navigation ul ul li,
+.site-navigation .dropdown li {
     display: block;
     margin: 0;
-    border-bottom: 1px solid #000000;
 }
 
 .site-navigation ul ul li:last-child {
     border-bottom: none;
 }
 
+.site-navigation ul ul a,
+.site-navigation .dropdown a {
+    color: #ffffff;
+}
+
+/* Third-level dropdown (nested submenu) */
+.site-navigation .dropdown .has-dropdown {
+    position: relative;
+}
+
+.site-navigation .dropdown .has-dropdown > .dropdown {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    display: none;
+}
+
+.site-navigation .dropdown .has-dropdown:hover > .dropdown {
+    display: block;
+}
+
+/* Ensure nested dropdown items display properly */
+.site-navigation .dropdown .dropdown li {
+    display: block;
+    margin: 0;
+}
+
+.site-navigation .dropdown .dropdown a {
+    color: #ffffff;
+    padding: 10px 15px;
+}
+
 /* Content area */
 .site-main {
     max-width: 800px;
-    margin: 40px auto;
+    margin: 20px auto 40px;
     padding: 0 20px;
     text-align: left;
+    flex: 1;
 }
 
 .content-area {
@@ -126,13 +186,20 @@ body {
 .site-footer {
     margin-top: 60px;
     padding: 40px 0;
-    border-top: 1px solid #000000;
+    background-color: var(--rsg-purple);
+    color: #ffffff;
 }
 
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px 0;
 }
 
 .footer-columns {
@@ -164,7 +231,7 @@ body {
 }
 
 .footer-column a {
-    color: #000000;
+    color: #ffffff;
     text-decoration: none;
 }
 
@@ -204,5 +271,15 @@ body {
 
 /* WooCommerce customizations */
 .woocommerce-ordering {
+    display: none !important;
+}
+
+/* Verberg product meta (artikelnummer & categorie) */
+.product_meta {
+    display: none !important;
+}
+
+/* Verberg gerelateerde producten */
+.related.products {
     display: none !important;
 }

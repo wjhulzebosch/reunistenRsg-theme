@@ -16,13 +16,15 @@
             <?php 
             $logo_url = reunisten_get_logo_url();
             if ($logo_url): ?>
-                <img src="<?php echo esc_url($logo_url); ?>" alt="<?php bloginfo('name'); ?> Logo">
+                <a href="<?php echo esc_url(home_url('/')); ?>">
+                    <img src="<?php echo esc_url($logo_url); ?>" alt="<?php bloginfo('name'); ?> Logo">
+                </a>
             <?php endif; ?>
         </div>
         
         <!-- Navigation Menu -->
         <nav class="site-navigation">
-            <?php reunisten_category_menu(); ?>
+            <?php reunisten_main_menu(); ?>
         </nav>
     </div>
 </header>

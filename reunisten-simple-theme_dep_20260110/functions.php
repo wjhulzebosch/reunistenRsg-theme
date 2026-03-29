@@ -65,59 +65,62 @@ function reunisten_get_logo_url() {
  * Generate category-based navigation menu
  */
 function reunisten_category_menu() {
-    // Keep for backwards compatibility
-    reunisten_main_menu();
-}
-
-/**
- * Generate main navigation menu based on overview.md structure
- */
-function reunisten_main_menu() {
-    ?>
-    <ul class="main-menu">
-        <!-- Home -->
-        <li><a href="<?php echo esc_url(home_url('/')); ?>">Home</a></li>
+    $categories = get_categories(array(
+        'orderby' => 'name',
+        'order' => 'ASC',
+        'parent' => 0, // Only top-level categories
+        'hide_empty' => false,
+        'exclude' => array(1), // Hide "Uncategorized" (usually ID 1)
+    ));
+    
+    if (!empty($categories)) {
+        echo '<ul>';
         
-        <!-- Mijn RRSG -->
-        <li class="has-dropdown">
-            <a href="<?php echo esc_url(home_url('/mijn-rrsg/')); ?>">Mijn RRSG</a>
-            <ul class="dropdown">
-                <li><a href="<?php echo esc_url(home_url('/bijdragen/')); ?>">Bijdragen</a></li>
-                <li><a href="<?php echo esc_url(home_url('/wijzigen/')); ?>">Gegevens wijzigen</a></li>
-                <li><a href="<?php echo esc_url(home_url('/melden-overlijden/')); ?>">Melden Overlijden</a></li>
-            </ul>
-        </li>
+        // Add hardcoded Webshop link
+        echo '<li><a href="' . esc_url(home_url('/winkel/')) . '">Webshop</a></li>';
         
-        <!-- Over ons -->
-        <li class="has-dropdown">
-            <a href="<?php echo esc_url(home_url('/over-ons/')); ?>">Over ons</a>
-            <ul class="dropdown">
-                <li><a href="<?php echo esc_url(home_url('/curatorium/')); ?>">Curatorium</a></li>
-                <li><a href="<?php echo esc_url(home_url('/fondsen/')); ?>">Fondsen</a></li>
-                <li><a href="<?php echo esc_url(home_url('/nesthorcommissie/')); ?>">Nesthorcommissie</a></li>
-                <li><a href="<?php echo esc_url(home_url('/odin/')); ?>">Odin</a></li>
-                <li><a href="<?php echo esc_url(home_url('/businessclub/')); ?>">Businessclub</a></li>
-                <li><a href="<?php echo esc_url(home_url('/contact/')); ?>">Contact</a></li>
-            </ul>
-        </li>
-        
-        <!-- Actueel -->
-        <li class="has-dropdown">
-            <a href="<?php echo esc_url(home_url('/actueel/')); ?>">Actueel</a>
-            <ul class="dropdown">
-                <li><a href="<?php echo esc_url(home_url('/nieuws/')); ?>">Nieuws</a></li>
-                <li><a href="<?php echo esc_url(home_url('/kalender/')); ?>">Op de kalender</a></li>
-                <li><a href="<?php echo esc_url(home_url('/publicaties/')); ?>">Publicaties</a></li>
-                <li><a href="<?php echo esc_url(home_url('/verslagen/')); ?>">Verslagen</a></li>
-                <li><a href="<?php echo esc_url(home_url('/eeuwcadeau/')); ?>">Eeuwcadeau</a></li>
-                <li><a href="<?php echo esc_url(home_url('/eeuwboek/')); ?>">Eeuwboek</a></li>
-            </ul>
-        </li>
-        
-        <!-- Webshop -->
-        <li><a href="<?php echo esc_url(home_url('/winkel/')); ?>">Webshop</a></li>
-    </ul>
-    <?php
+        foreach ($categories as $category) {
+            echo '<li>';
+            echo '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
+            
+            // Check for subcategories
+            $subcategories = get_categories(array(
+                'orderby' => 'name',
+                'order' => 'ASC',
+                'parent' => $category->term_id,
+                'hide_empty' => false,
+            ));
+            
+            if (!empty($subcategories)) {
+                echo '<ul>';
+                foreach ($subcategories as $subcategory) {
+                    echo '<li>';
+                    echo '<a href="' . esc_url(get_category_link($subcategory->term_id)) . '">' . esc_html($subcategory->name) . '</a>';
+                    
+                    // Get posts and pages for this subcategory
+                    $posts = get_posts(array(
+                        'category' => $subcategory->term_id,
+                        'numberposts' => -1,
+                        'post_status' => 'publish',
+                    ));
+                    
+                    if (!empty($posts)) {
+                        echo '<ul>';
+                        foreach ($posts as $post) {
+                            echo '<li><a href="' . esc_url(get_permalink($post->ID)) . '">' . esc_html($post->post_title) . '</a></li>';
+                        }
+                        echo '</ul>';
+                    }
+                    
+                    echo '</li>';
+                }
+                echo '</ul>';
+            }
+            
+            echo '</li>';
+        }
+        echo '</ul>';
+    }
 }
 
 /**
