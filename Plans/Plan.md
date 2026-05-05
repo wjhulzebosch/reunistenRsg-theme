@@ -1,0 +1,71 @@
+Main navigation
+- Direct links
+-- Webshop
+-- Gegevens wijzigen
+-- Het R.S.G.
+
+- Drop down
+-- Activiteiten
+--- Kalender
+--- Verslagen *
+--- Aankondigingen *
+--- Bijzondere projecten *
+--- Nieuwsbrieven *
+-- Almanak
+--- In memoriam *
+--- Ledenlijst
+--- Lijsten Senaat, Bestuur en Commissies
+-- Doneren
+--- Fondsen donaties
+--- Lidmaatschap
+--- Schenkingen en legaten
+-- Mijn RRSG
+--- Beeindigen donateurschap
+--- Gegevens wijzigen
+--- Melden overlijden
+--- Uitschrijven als Reünist
+-- Over Ons
+--- Businessclubcommissie
+--- Contact
+--- Curatorium
+--- Doel van de Stichting
+--- Fondsen
+--- Jaarstukken
+--- Nesthor Commissie
+--- Statuten
+--- Wat is R.R.S.G.
+
+Footer navigation
+- Algemeen
+-- Webshop
+-- Gegevens wijzigen
+-- Het R.S.G.
+-- Activiteiten
+--- Kalender
+--- Verslagen
+--- Aankondigingen
+--- Bijzondere projecten
+--- Nieuwsbrieven
+-- Almanak
+--- In memoriam
+--- Ledenlijst
+--- Lijsten Senaat, Bestuur en Commissies
+-- Doneren
+--- Fondsen donaties
+--- Lidmaatschap
+--- Schenkingen en legaten
+-- Mijn RRSG
+--- Beeindigen donateurschap
+--- Gegevens wijzigen
+--- Melden overlijden
+--- Uitschrijven als Reünist
+-- Over Ons
+--- Businessclubcommissie
+--- Contact
+--- Curatorium
+--- Doel van de Stichting
+--- Fondsen
+--- Jaarstukken
+--- Nesthor Commissie
+--- Statuten
+--- Wat is R.R.S.G.
